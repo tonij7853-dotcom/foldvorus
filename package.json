@@ -10,7 +10,8 @@
     "test": "tsx src/tests/run-tests.ts",
     "benchmark": "tsx src/tests/benchmark.ts",
     "test:live-adapters": "tsx src/tests/live-adapters.test.ts",
-    "seed": "tsx src/lib/db/seed.ts"
+    "seed": "tsx src/lib/db/seed-supabase.ts",
+    "seed:supabase": "tsx src/lib/db/seed-supabase.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
