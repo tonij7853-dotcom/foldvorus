@@ -1,0 +1,36 @@
+name: Respectful Scheduled Scenepack Indexer
+
+on:
+  schedule:
+    # Run twice daily (every 12 hours)
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r crawler/requirements.txt
+
+      - name: Run Respectful Crawler
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          CRAWLER_USER_AGENT: ${{ secrets.CRAWLER_USER_AGENT }}
+        run: |
+          python crawler/indexer.py
+
+      - name: Verify Link Health
+        run: |
+          python crawler/link_checker.py
