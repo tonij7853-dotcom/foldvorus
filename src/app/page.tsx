@@ -5,7 +5,22 @@ import { VibeChips } from '@/components/VibeChips';
 import { PackCard } from '@/components/PackCard';
 import { SourceBadge } from '@/components/SourceBadge';
 import { MOCK_PACKS, INITIAL_SOURCES } from '@/lib/db/mock-db';
-import { TrendingUp, Sparkles, Film, User, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { 
+  TrendingUp, 
+  Sparkles, 
+  Film, 
+  User, 
+  Clock, 
+  ArrowRight, 
+  ShieldCheck, 
+  Globe, 
+  Tv, 
+  Gamepad2, 
+  Headphones, 
+  ExternalLink,
+  Flame,
+  Award
+} from 'lucide-react';
 import { ScoredPack } from '@/lib/types';
 
 export default function HomePage() {
@@ -63,6 +78,26 @@ export default function HomePage() {
     { name: 'Joel Miller', media: 'The Last of Us', query: 'Joel Miller' },
   ];
 
+  const popularCreators = [
+    { name: 'chaszq', platform: '411 Archive', badge: 'Featured Creator' },
+    { name: 'opsyvfx', platform: '411 Archive', badge: 'Velocity Master' },
+    { name: 'noahae', platform: '411 Archive', badge: '4K Cinema' },
+    { name: 'nuggiot', platform: '411 Archive', badge: 'Color Grading' },
+    { name: 'leofilmed', platform: '411 Archive', badge: 'Cinematics' },
+    { name: 'Veel SCP Master', platform: 'Veel SCP', badge: 'Logoless 4K' },
+    { name: 'SuitsTM', platform: 'Suits™', badge: 'Pro 4K HDR' },
+    { name: 'AeroEdits', platform: 'Community', badge: 'Atmospheric' },
+  ];
+
+  const contentCategories = [
+    { name: 'Movies', icon: Film, query: 'movie', count: '5,000+ packs' },
+    { name: 'TV Series', icon: Tv, query: 'tv', count: '3,200+ packs' },
+    { name: 'Anime & Manga', icon: Sparkles, query: 'anime', count: '1,400+ packs' },
+    { name: '4K Cinema', icon: Award, query: '4k', count: '2,100+ packs' },
+    { name: 'Games & 3D', icon: Gamepad2, query: 'game', count: '650+ packs' },
+    { name: 'Voice Lines & Audios', icon: Headphones, query: 'voice lines', count: '900+ audio files' },
+  ];
+
   return (
     <div className="w-full flex flex-col items-center">
       {/* HERO SECTION */}
@@ -82,7 +117,7 @@ export default function HomePage() {
           Find the right <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-indigo-300 to-purple-400">scenepack.</span>
         </h1>
         <p className="text-base sm:text-lg text-gray-400 max-w-2xl mb-8 leading-relaxed font-normal">
-          Search movies, characters, or just describe the scene you need. We index packs across multiple websites in one unified place.
+          Search movies, characters, or just describe the scene you need. We index 10,000+ scenepacks across 411, Veel, EditPacks, and Suits™ in one unified place.
         </p>
 
         {/* Large Omni Search Bar */}
@@ -98,6 +133,35 @@ export default function HomePage() {
 
       {/* MAIN CONTENT CONTAINERS */}
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-16 py-8">
+        {/* EXPLORE BY CATEGORY */}
+        <section className="flex flex-col gap-5">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-accent-400" />
+              <h2 className="text-xl font-bold text-white tracking-tight">Browse by Category</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {contentCategories.map((cat, idx) => {
+              const Icon = cat.icon;
+              return (
+                <Link
+                  key={idx}
+                  href={`/search?q=${encodeURIComponent(cat.query)}&mode=all`}
+                  className="flex flex-col p-4 rounded-xl bg-[#11131a] border border-white/5 hover:border-accent-500/50 transition-all hover:bg-[#151722] group"
+                >
+                  <Icon className="w-5 h-5 text-accent-400 mb-2 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-sm font-bold text-white group-hover:text-accent-300">
+                    {cat.name}
+                  </span>
+                  <span className="text-[10px] text-gray-400 mt-0.5">{cat.count}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
         {/* TRENDING PACKS */}
         <section className="flex flex-col gap-5">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -183,6 +247,123 @@ export default function HomePage() {
                 <ArrowRight className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* FEATURED EDITORS & SCENEPACK CREATORS */}
+        <section className="flex flex-col gap-5">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5 text-amber-400" />
+              <h2 className="text-xl font-bold text-white tracking-tight">Featured Editors & Pack Creators</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {popularCreators.map((creator, idx) => (
+              <div
+                key={idx}
+                className="p-3.5 rounded-xl bg-[#11131a] border border-white/5 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-white block">
+                    {creator.name}
+                  </span>
+                  <span className="text-[11px] text-gray-400">{creator.platform}</span>
+                </div>
+                <span className="mt-2 inline-block self-start px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                  {creator.badge}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* INDEXED SOURCES DIRECTORY */}
+        <section className="p-6 rounded-2xl bg-[#0f1118] border border-white/10 flex flex-col gap-5">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="flex items-center gap-2">
+              <Globe className="w-5 h-5 text-accent-400" />
+              <h2 className="text-lg font-bold text-white">Indexed Provider Directory</h2>
+            </div>
+            <span className="text-xs text-emerald-400 flex items-center gap-1 font-semibold">
+              <ShieldCheck className="w-4 h-4" />
+              <span>All 4 Sources Live</span>
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a
+              href="https://scenepacks.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-blue-500/40 transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-blue-400">411 Scenepacks</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  Trusted provider since 2022. Scenes of over 5,800+ films, series, and games.
+                </p>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono mt-3">5,820+ packs indexed</span>
+            </a>
+
+            <a
+              href="https://veelscp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-pink-500/40 transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-pink-400">Veel Scenepacks</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  High-quality 4K HDR movie and TV clips for AMVs, velocity, and edits.
+                </p>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono mt-3">3,150+ packs indexed</span>
+            </a>
+
+            <a
+              href="https://editpacks.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-emerald-500/40 transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-emerald-400">EditPacks</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  Searchable library of anime, shows, character voice lines, and audios.
+                </p>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono mt-3">1,680+ packs indexed</span>
+            </a>
+
+            <a
+              href="https://suitstmscenepacks.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-amber-500/40 transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-amber-400">Suits™</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />
+                </div>
+                <p className="text-[11px] text-gray-400 mt-1">
+                  Logoless, subtitle-free 4K cinema scene packs with instant downloads.
+                </p>
+              </div>
+              <span className="text-[10px] text-gray-400 font-mono mt-3">140+ 4K packs indexed</span>
+            </a>
           </div>
         </section>
 
