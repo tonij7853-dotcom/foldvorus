@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { ScoredPack } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 interface PackPageProps {
   params: { id: string };
 }

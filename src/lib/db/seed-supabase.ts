@@ -52,7 +52,7 @@ async function seedSupabase() {
   const packsPayload = MOCK_PACKS.map(p => ({
     id: p.id,
     source_id: p.sourceId,
-    external_id: p.external_id || p.externalId,
+    external_id: p.externalId,
     title: p.title,
     media_title: p.mediaTitle,
     media_type: p.mediaType || 'movie',
