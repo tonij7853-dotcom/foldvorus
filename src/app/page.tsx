@@ -44,12 +44,12 @@ export default function HomePage() {
     }));
 
   const popularMovies = [
-    { title: 'Cruella', count: 3, year: 2021, image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80', query: 'Cruella' },
-    { title: 'The Batman', count: 2, year: 2022, image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80', query: 'The Batman' },
-    { title: 'Euphoria', count: 2, year: 2019, image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&q=80', query: 'Euphoria' },
-    { title: 'Interstellar', count: 1, year: 2014, image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80', query: 'Interstellar' },
-    { title: 'Spider-Man', count: 1, year: 2021, image: 'https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?w=400&q=80', query: 'Spider-Man' },
-    { title: 'Succession', count: 1, year: 2018, image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&q=80', query: 'Succession' },
+    { title: 'Cruella', count: 3, year: 2021, image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=80', query: 'Cruella' },
+    { title: 'The Batman', count: 2, year: 2022, image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80', query: 'The Batman' },
+    { title: 'Euphoria', count: 2, year: 2019, image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&auto=format&fit=crop&q=80', query: 'Euphoria' },
+    { title: 'Interstellar', count: 1, year: 2014, image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80', query: 'Interstellar' },
+    { title: 'Spider-Man', count: 1, year: 2021, image: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop&q=80', query: 'Spider-Man' },
+    { title: 'Succession', count: 1, year: 2018, image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80', query: 'Succession' },
   ];
 
   const popularCharacters = [
