@@ -18,6 +18,7 @@ import {
   Share2 
 } from 'lucide-react';
 import { ScoredPack } from '@/lib/types';
+import { getDirectSourceUrl } from '@/lib/sources/url-builder';
 
 export const dynamic = 'force-dynamic';
 
@@ -163,7 +164,7 @@ export default function PackDetailPage({ params }: { params: { id: string } }) {
           {/* Direct Outbound Link Button */}
           <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-3">
             <a
-              href={pack.sourceUrl}
+              href={getDirectSourceUrl(pack.sourceId, pack.mediaTitle, pack.characterName)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-accent-600 hover:bg-accent-500 text-white font-bold text-sm shadow-lg shadow-accent-600/30 transition-all active:scale-95"
@@ -171,18 +172,6 @@ export default function PackDetailPage({ params }: { params: { id: string } }) {
               <span>Open Pack on {pack.sourceId.toUpperCase()}</span>
               <ExternalLink className="w-4 h-4" />
             </a>
-
-            {pack.downloadPageUrl && (
-              <a
-                href={pack.downloadPageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition-colors"
-              >
-                <span>Direct Download Page</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { ScoredPack } from '@/lib/types';
 import { SourceBadge } from './SourceBadge';
+import { getDirectSourceUrl } from '@/lib/sources/url-builder';
 
 interface PackCardProps {
   pack: ScoredPack;
@@ -59,10 +60,12 @@ export const PackCard: React.FC<PackCardProps> = ({ pack, showMatchReasons = tru
     } catch {}
   };
 
+  const directUrl = getDirectSourceUrl(pack.sourceId, pack.mediaTitle, pack.characterName);
+
   const copyLink = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigator.clipboard.writeText(pack.sourceUrl);
+    navigator.clipboard.writeText(directUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -248,9 +251,9 @@ export const PackCard: React.FC<PackCardProps> = ({ pack, showMatchReasons = tru
             Details
           </Link>
 
-          {/* IMPORTANT: Link directly to original source download / pack page */}
+          {/* IMPORTANT: Link directly to original source search / pack landing page */}
           <a
-            href={pack.sourceUrl}
+            href={directUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-600 hover:bg-accent-500 text-white font-semibold text-xs transition-all shadow-md shadow-accent-600/20 active:scale-95"
