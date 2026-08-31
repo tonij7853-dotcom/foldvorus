@@ -26,6 +26,64 @@ export function calculatePackRelevance(pack: Pack, intent: QueryIntent): ScoredP
 
   const isExactMode = intent.detectedMode === 'exact' || intent.searchMode === 'exact';
 
+  // 0. SPECIAL HANDLING FOR EXPLORE / TRENDING / ALL BROWSING
+  const isBrowseAll = !rawQuery || rawQuery === 'trending' || rawQuery === 'all' || rawQuery === 'explore' || rawQuery === 'scenepacks' || rawQuery === 'packs';
+  if (isBrowseAll) {
+    score = pack.popularity || 85;
+    matchReasons.push('Trending Community Scenepack');
+    matchedConcepts.push('Trending');
+    return {
+      ...pack,
+      relevanceScore: Math.min(100, Math.round(score)),
+      confidence: 'BEST MATCH',
+      matchType: 'likely_pack',
+      evidence: { type: 'metadata', text: 'Trending on SceneFind' },
+      isExactSceneVerified: false,
+      matchedConcepts: ['Trending'],
+      matchReasons: ['Trending Community Scenepack'],
+      groupCategory: pack.category || 'POPULAR PACKS',
+    };
+  }
+
+  // 0.5 CATEGORY QUICK-SEARCH HANDLING
+  if (normQuery === 'movie' || normQuery === 'movies') {
+    if (pack.mediaType === 'movie') {
+      score += 60;
+      matchReasons.push('Category: Movie Scenepacks');
+      matchedConcepts.push('Movies');
+    }
+  } else if (normQuery === 'tv' || normQuery === 'series' || normQuery === 'shows' || normQuery === 'tv shows') {
+    if (pack.mediaType === 'tv') {
+      score += 60;
+      matchReasons.push('Category: TV Series');
+      matchedConcepts.push('TV Series');
+    }
+  } else if (normQuery === 'anime' || normQuery === 'manga' || normQuery === 'animation') {
+    if (pack.mediaType === 'anime' || (pack.category && pack.category.toLowerCase().includes('anim'))) {
+      score += 60;
+      matchReasons.push('Category: Anime & Animation');
+      matchedConcepts.push('Anime');
+    }
+  } else if (normQuery === '4k' || normQuery === '4k cinema' || normQuery === 'hdr' || normQuery === 'raw 4k') {
+    if (pack.quality === '4K') {
+      score += 60;
+      matchReasons.push('Category: 4K Cinema');
+      matchedConcepts.push('4K');
+    }
+  } else if (normQuery === 'game' || normQuery === 'games' || normQuery === '3d') {
+    if (pack.mediaType === 'game' || (pack.category && pack.category.toLowerCase().includes('game'))) {
+      score += 60;
+      matchReasons.push('Category: Games & 3D');
+      matchedConcepts.push('Games');
+    }
+  } else if (normQuery === 'sports' || normQuery === 'athlete' || normQuery === 'football') {
+    if (pack.mediaType === 'sports' || (pack.category && pack.category.toLowerCase().includes('sport'))) {
+      score += 60;
+      matchReasons.push('Category: Sports');
+      matchedConcepts.push('Sports');
+    }
+  }
+
   // 1. EVALUATE DIRECT EVIDENCE FIRST
   const evidenceAssessment = evaluateSceneEvidence(pack, intent);
 
