@@ -105,7 +105,10 @@ export async function POST(req: NextRequest) {
         });
         const html = await res.text();
         const titleMatch = html.match(/<h1[^>]*>([^<]+)<\/h1>/i) || html.match(/<title>([^<]+)<\/title>/i);
-        const title = titleMatch ? titleMatch[1].trim() : `411 Scenepack #${packId}`;
+        let title = titleMatch ? titleMatch[1].trim() : `411 Scenepack #${packId}`;
+        if (title.includes('Just a moment') || title.includes('Attention Required') || title.includes('Cloudflare')) {
+          title = `411 Community Scenepack #${packId || 'File'}`;
+        }
 
         // Look for Mega / Google Drive / Mediafire link inside
         const megaMatch = html.match(/href=["'](https:\/\/mega\.nz\/[^"']+)["']/i);
