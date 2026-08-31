@@ -137,8 +137,33 @@ export default function HomePage() {
         </p>
 
         {/* Large Omni Search Bar */}
-        <div className="w-full max-w-2xl mb-8">
+        <div className="w-full max-w-2xl mb-4">
           <SearchBar size="large" autoFocus={false} />
+        </div>
+
+        {/* Quick Downloader Bridge */}
+        <div className="w-full max-w-2xl mb-6">
+          <Link
+            href="/download"
+            className="w-full p-3 rounded-xl bg-gradient-to-r from-accent-950/40 via-[#131622] to-purple-950/40 border border-accent-500/30 hover:border-accent-400 flex items-center justify-between gap-3 text-xs group transition-all"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center font-bold">
+                📥
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="font-bold text-white group-hover:text-accent-300 transition-colors">
+                  Have a direct link from Veel SCP, 411, Suits™ or MEGA?
+                </span>
+                <span className="text-[11px] text-gray-400">
+                  Open the Instant Pack Downloader &amp; Link Resolver
+                </span>
+              </div>
+            </div>
+            <span className="px-2.5 py-1 rounded-md bg-accent-600 group-hover:bg-accent-500 text-white font-bold text-[11px] flex-shrink-0 transition-colors">
+              Open Downloader ↗
+            </span>
+          </Link>
         </div>
 
         {/* Quick Vibe Discovery Chips */}

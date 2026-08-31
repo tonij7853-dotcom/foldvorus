@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Film, Bookmark, Sparkles, Activity, Search, ShieldCheck } from 'lucide-react';
+import { Film, Bookmark, Sparkles, Activity, Search, ShieldCheck, Download } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const [favCount, setFavCount] = useState<number>(0);
@@ -52,6 +52,14 @@ export const Header: React.FC = () => {
 
         {/* Navigation Items */}
         <div className="flex items-center gap-2 sm:gap-4">
+          <Link
+            href="/download"
+            className="flex items-center gap-1.5 text-xs font-bold text-white bg-gradient-to-r from-accent-600/80 to-purple-600/80 hover:from-accent-500 hover:to-purple-500 px-3 py-1.5 rounded-lg border border-accent-400/30 transition-all shadow-sm shadow-accent-600/20"
+          >
+            <Download className="w-3.5 h-3.5 text-accent-200" />
+            <span>Downloader</span>
+          </Link>
+
           <Link
             href="/search?q=emotional+clips&mode=vibe"
             className="hidden md:flex items-center gap-1.5 text-xs font-medium text-gray-300 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors"
