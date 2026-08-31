@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "tsx src/tests/run-tests.ts",
+    "test:download-resolver": "tsx src/tests/download-resolver.test.ts",
     "benchmark": "tsx src/tests/benchmark.ts",
     "test:live-adapters": "tsx src/tests/live-adapters.test.ts",
     "seed": "tsx src/lib/db/seed-supabase.ts",

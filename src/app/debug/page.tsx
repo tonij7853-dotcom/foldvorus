@@ -225,6 +225,93 @@ export default function DebugDiagnosticsPage() {
         )}
       </div>
 
+      {/* Download Resolver Inspector */}
+      <div className="p-6 rounded-2xl bg-[#11131a] border border-accent-500/20 flex flex-col gap-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-accent-400" />
+            <h2 className="text-base font-bold text-white">Download Resolver &amp; Gateway Inspector</h2>
+          </div>
+          <span className="text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">
+            Patrins • Veel • 411 • Suits™ • EditPacks
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+          <div className="p-4 rounded-xl bg-[#0a0b0e] border border-white/10 flex flex-col gap-2">
+            <span className="text-gray-400 font-bold uppercase text-[10px]">Sample: Cruella (2021) — Estella</span>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Original Source:</span>
+              <span className="text-pink-400 font-semibold">Veel SCP</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Gateway:</span>
+              <span className="text-gray-300">veelscp.com/gateway/?id=...</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolved Host:</span>
+              <span className="text-blue-400 font-semibold">Patrins</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolved Page:</span>
+              <span className="text-emerald-400">patrins.com/f/cruella-4k</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Strategy:</span>
+              <span className="text-purple-400 font-semibold">PATRINS_SHARE_PAGE</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Direct URL Found:</span>
+              <span className="text-amber-400">NO (Cloudflare Protected)</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolution Time:</span>
+              <span className="text-emerald-400 font-semibold">184 ms</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-500">Status:</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">READY</span>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#0a0b0e] border border-white/10 flex flex-col gap-2">
+            <span className="text-gray-400 font-bold uppercase text-[10px]">Sample: The Batman (2022) — Bruce Wayne</span>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Original Source:</span>
+              <span className="text-blue-400 font-semibold">411 Scenepacks</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Gateway / Pack:</span>
+              <span className="text-gray-300">scenepacks.com/scps/698</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolved Host:</span>
+              <span className="text-amber-400 font-semibold">MEGA Cloud Storage</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolved Page:</span>
+              <span className="text-emerald-400">mega.nz/folder/...</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Strategy:</span>
+              <span className="text-blue-400 font-semibold">CLOUD_STORAGE</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Direct URL Found:</span>
+              <span className="text-emerald-400">YES (Direct Folder)</span>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span className="text-gray-500">Resolution Time:</span>
+              <span className="text-emerald-400 font-semibold">142 ms</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-500">Status:</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">READY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Dead Link Checker Simulator Action */}
       <div className="p-5 rounded-2xl bg-[#11131a] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>

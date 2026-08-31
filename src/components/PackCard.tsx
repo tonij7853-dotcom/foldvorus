@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { ScoredPack } from '@/lib/types';
 import { SourceBadge } from './SourceBadge';
+import { DownloadButton } from './DownloadButton';
 import { getDirectSourceUrl } from '@/lib/sources/url-builder';
 
 interface PackCardProps {
@@ -251,16 +252,23 @@ export const PackCard: React.FC<PackCardProps> = ({ pack, showMatchReasons = tru
             Details
           </Link>
 
-          {/* IMPORTANT: Link directly to original source search / pack landing page */}
-          <a
-            href={directUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-600 hover:bg-accent-500 text-white font-semibold text-xs transition-all shadow-md shadow-accent-600/20 active:scale-95"
-          >
-            <span>Open Pack</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+          {/* Unified Fast Download Button */}
+          <DownloadButton
+            target={{
+              provider: pack.sourceId as any,
+              originalUrl: directUrl,
+              resolvedUrl: directUrl,
+              directDownloadVerified: false,
+              canDirectDownload: false,
+              requiresExternalPage: true,
+              confidence: 'verified',
+              strategy: pack.sourceId === 'veel' ? 'PATRINS_SHARE_PAGE' : 'CLOUD_STORAGE',
+              status: 'active'
+            }}
+            packId={pack.id}
+            size="sm"
+            className="flex-1"
+          />
         </div>
       </div>
     </div>
