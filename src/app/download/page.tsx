@@ -207,17 +207,18 @@ export default function DownloaderPage() {
             {/* Direct Download Button */}
             <a
               href={result.directDownloadUrl}
+              download
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-4 rounded-xl bg-accent-600 hover:bg-accent-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-accent-600/30 transition-all group"
+              className="px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all group"
             >
               <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-              <span>Download File Now</span>
+              <span>Direct Fast Download</span>
             </a>
 
             {/* In-Browser Preview */}
             <a
-              href={result.streamPreviewUrl || result.directDownloadUrl}
+              href={result.streamPreviewUrl || result.originalUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10 transition-all"
@@ -234,7 +235,7 @@ export default function DownloaderPage() {
               {copied ? (
                 <>
                   <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-400">Copied!</span>
+                  <span className="text-emerald-400">Direct Link Copied!</span>
                 </>
               ) : (
                 <>
@@ -245,10 +246,18 @@ export default function DownloaderPage() {
             </button>
           </div>
 
+          {/* Direct Raw URL Bar */}
+          <div className="flex flex-col gap-1.5 p-3 rounded-xl bg-[#090a0f] border border-white/5 font-mono text-[11px]">
+            <span className="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Direct Resolved CDN Endpoint:</span>
+            <div className="flex items-center justify-between gap-2 overflow-x-auto text-emerald-400">
+              <span className="truncate">{result.directDownloadUrl}</span>
+            </div>
+          </div>
+
           {/* Safety & Bypass Note */}
           {result.notes && (
-            <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-2.5 text-xs text-gray-400">
-              <ShieldCheck className="w-4 h-4 text-accent-400 flex-shrink-0" />
+            <div className="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex items-center gap-2.5 text-xs text-emerald-300">
+              <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <span>{result.notes}</span>
             </div>
           )}
