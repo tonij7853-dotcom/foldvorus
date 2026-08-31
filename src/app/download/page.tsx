@@ -212,7 +212,7 @@ export default function DownloaderPage() {
               className="px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all group"
             >
               <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-              <span>Open Download Page ↗</span>
+              <span>Download in New Tab ↗</span>
             </a>
 
             {/* In-Browser Preview */}
@@ -223,7 +223,7 @@ export default function DownloaderPage() {
               className="px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10 transition-all"
             >
               <Eye className="w-4 h-4 text-gray-300" />
-              <span>Preview / Stream Clips</span>
+              <span>Full Screen Stream</span>
             </a>
 
             {/* Copy Link */}
@@ -239,10 +239,31 @@ export default function DownloaderPage() {
               ) : (
                 <>
                   <Copy className="w-4 h-4 text-gray-400" />
-                  <span>Copy Direct Link</span>
+                  <span>Copy Link</span>
                 </>
               )}
             </button>
+          </div>
+
+          {/* Embedded In-App Direct Download Frame (1-Click Download Inside SceneFind) */}
+          <div className="flex flex-col gap-3 rounded-2xl bg-[#090b12] p-4 border border-accent-500/30">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                In-App 1-Click Fast Downloader &amp; Preview
+              </span>
+              <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-semibold">
+                No Ad Redirects
+              </span>
+            </div>
+            <div className="w-full h-[460px] rounded-xl overflow-hidden border border-white/10 bg-black relative">
+              <iframe
+                src={result.directDownloadUrl}
+                title="Direct In-App Downloader"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+            </div>
           </div>
 
           {/* Direct Raw URL Bar */}
