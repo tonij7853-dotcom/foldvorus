@@ -246,10 +246,22 @@ export default function DownloaderPage() {
           </div>
 
           {/* Direct Raw URL Bar */}
-          <div className="flex flex-col gap-1.5 p-3 rounded-xl bg-[#090a0f] border border-white/5 font-mono text-[11px]">
-            <span className="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Direct Resolved CDN Endpoint:</span>
-            <div className="flex items-center justify-between gap-2 overflow-x-auto text-emerald-400">
-              <span className="truncate">{result.directDownloadUrl}</span>
+          <div className="flex flex-col gap-2 p-4 rounded-xl bg-[#090a0f] border border-accent-500/20 font-mono text-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-accent-400 text-[11px] uppercase font-bold tracking-wider flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3" />
+                Unshortened Output Download Link:
+              </span>
+              <button
+                onClick={() => handleCopy(result.directDownloadUrl)}
+                className="text-xs text-gray-400 hover:text-white flex items-center gap-1 px-2 py-0.5 rounded bg-white/5"
+              >
+                {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copied ? 'Copied' : 'Copy'}</span>
+              </button>
+            </div>
+            <div className="flex items-center justify-between gap-2 overflow-x-auto text-emerald-300 bg-[#121520] p-2.5 rounded-lg border border-white/5">
+              <span className="break-all font-semibold select-all">{result.directDownloadUrl}</span>
             </div>
           </div>
 

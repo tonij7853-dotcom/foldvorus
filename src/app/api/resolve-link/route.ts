@@ -24,7 +24,34 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Please provide a valid scenepack or download URL.' }, { status: 400 });
     }
 
-    const cleanUrl = url.trim();
+    let cleanUrl = url.trim();
+
+    // 0. VEEL GATEWAY AD-LINK BYPASS (veelscp.com/gateway/?id=...)
+    if (cleanUrl.includes('veelscp.com/gateway')) {
+      const gwMatch = cleanUrl.match(/[?&]id=([^&#]+)/i);
+      const gwId = gwMatch ? gwMatch[1] : '';
+
+      if (gwId) {
+        try {
+          const claimRes = await fetch('https://veelscp.com/api/scenepacks?action=claim-download', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Referer': cleanUrl
+            },
+            body: JSON.stringify({ id: gwId, watchToken: 'reclaim' })
+          });
+          const claimData = await claimRes.json();
+          if (claimData && claimData.url) {
+            // Replace the gateway URL with the real destination file URL
+            cleanUrl = claimData.url;
+          }
+        } catch (e) {
+          console.error('Gateway bypass error:', e);
+        }
+      }
+    }
 
     // 1. FILES.VEELSCP.COM (Patrins file host)
     if (cleanUrl.includes('files.veelscp.com') || cleanUrl.includes('patrins.com')) {
