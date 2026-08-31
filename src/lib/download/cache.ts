@@ -46,11 +46,11 @@ class DownloadTargetCache {
   public getAll(): Array<{ key: string; target: DownloadTarget; cachedAt: number }> {
     const list: Array<{ key: string; target: DownloadTarget; cachedAt: number }> = [];
     const now = Date.now();
-    for (const [key, entry] of this.cache.entries()) {
+    this.cache.forEach((entry, key) => {
       if (now <= entry.expiresAt) {
         list.push({ key, target: entry.target, cachedAt: entry.cachedAt });
       }
-    }
+    });
     return list;
   }
 }

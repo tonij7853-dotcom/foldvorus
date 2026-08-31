@@ -6,7 +6,7 @@ import { resolve411 } from './providers/scenepacks411';
 import { resolveEditPacks } from './providers/editpacks';
 import { resolveSuits } from './providers/suits';
 
-const ALLOWED_DOMAINS = new Set([
+const ALLOWED_DOMAINS: string[] = [
   'scenepacks.com',
   'www.scenepacks.com',
   'veelscp.com',
@@ -26,7 +26,7 @@ const ALLOWED_DOMAINS = new Set([
   'mediafire.com',
   'www.mediafire.com',
   'gofile.io'
-]);
+];
 
 const BLOCKED_HOST_PATTERNS = [
   /^localhost$/i,
@@ -54,20 +54,16 @@ export function validateUrlForSsrf(urlStr: string): { isValid: boolean; error?: 
     const hostname = parsed.hostname.toLowerCase();
 
     // Check blocked IP ranges and localhost
-    for (const pattern of BLOCKED_HOST_PATTERNS) {
-      if (pattern.test(hostname)) {
+    for (let i = 0; i < BLOCKED_HOST_PATTERNS.length; i++) {
+      if (BLOCKED_HOST_PATTERNS[i].test(hostname)) {
         return { isValid: false, error: `Security check failed: IP or private host is blocked.` };
       }
     }
 
     // Check allowlisted domains
-    let isDomainAllowed = false;
-    for (const allowed of ALLOWED_DOMAINS) {
-      if (hostname === allowed || hostname.endsWith(`.${allowed}`)) {
-        isDomainAllowed = true;
-        break;
-      }
-    }
+    const isDomainAllowed = ALLOWED_DOMAINS.some(
+      (allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`)
+    );
 
     if (!isDomainAllowed) {
       return { isValid: false, error: `Security check failed: Domain ${hostname} is not in the allowed source list.` };

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveDownloadTarget } from '@/lib/download/resolver';
-import { MOCK_SCENEPACKS } from '@/lib/db/mock-db';
+import { MOCK_PACKS } from '@/lib/db/mock-db';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     let targetUrl = url;
 
     if (packId && !targetUrl) {
-      const pack = MOCK_SCENEPACKS.find(p => p.id === packId || p.externalId === packId);
+      const pack = MOCK_PACKS.find(p => p.id === packId || p.externalId === packId);
       if (pack) {
         targetUrl = pack.downloadPageUrl || pack.sourceUrl;
       }
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     let targetUrl = url;
     if (packId && !targetUrl) {
-      const pack = MOCK_SCENEPACKS.find(p => p.id === packId || p.externalId === packId);
+      const pack = MOCK_PACKS.find(p => p.id === packId || p.externalId === packId);
       if (pack) {
         targetUrl = pack.downloadPageUrl || pack.sourceUrl;
       }
