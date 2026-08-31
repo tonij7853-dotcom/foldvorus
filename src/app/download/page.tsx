@@ -207,13 +207,12 @@ export default function DownloaderPage() {
             {/* Direct Download Button */}
             <a
               href={result.directDownloadUrl}
-              download
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all group"
             >
               <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-              <span>Direct Fast Download</span>
+              <span>Open Download Page ↗</span>
             </a>
 
             {/* In-Browser Preview */}
