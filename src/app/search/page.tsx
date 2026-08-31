@@ -218,6 +218,55 @@ function SearchContent() {
 
         {/* Results Area */}
         <div className="lg:col-span-3 flex flex-col gap-6">
+          {/* Direct Outbound Search Bridge to 10,000+ Live Packs */}
+          {query && query.trim() !== 'trending' && query.trim() !== 'all' && (
+            <div className="p-4 rounded-xl bg-gradient-to-r from-blue-950/30 via-purple-950/20 to-pink-950/30 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+              <div className="flex flex-col gap-0.5">
+                <span className="font-semibold text-white flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-accent-400" />
+                  Search &ldquo;{query}&rdquo; Across 10,000+ External Library Packs
+                </span>
+                <span className="text-gray-400 text-[11px]">
+                  Can&apos;t find an exact clip? Open direct search on the 4 live source databases:
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <a
+                  href={`https://scenepacks.com/?search=${encodeURIComponent(query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 transition-all font-medium text-[11px]"
+                >
+                  411 (5.8k+) ↗
+                </a>
+                <a
+                  href={`https://veelscp.com/?s=${encodeURIComponent(query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-pink-600/20 hover:bg-pink-600 text-pink-300 hover:text-white border border-pink-500/30 transition-all font-medium text-[11px]"
+                >
+                  Veel (3.1k+) ↗
+                </a>
+                <a
+                  href={`https://editpacks.org/?s=${encodeURIComponent(query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 transition-all font-medium text-[11px]"
+                >
+                  EditPacks (1.6k+) ↗
+                </a>
+                <a
+                  href={`https://suitstmscenepacks.com/?s=${encodeURIComponent(query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/30 transition-all font-medium text-[11px]"
+                >
+                  Suits™ ↗
+                </a>
+              </div>
+            </div>
+          )}
+
           {/* Header Bar with Match Type Filters and View Toggles */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
             <div className="flex flex-wrap items-center gap-2">

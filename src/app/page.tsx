@@ -151,11 +151,14 @@ export default function HomePage() {
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-16 py-8">
         {/* EXPLORE BY CATEGORY */}
         <section className="flex flex-col gap-5">
-          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-3 gap-1">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-accent-400" />
               <h2 className="text-xl font-bold text-white tracking-tight">Browse by Category</h2>
             </div>
+            <span className="text-xs text-gray-400">
+              Indexing 10,000+ packs across 411, Veel, EditPacks & Suits™
+            </span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
